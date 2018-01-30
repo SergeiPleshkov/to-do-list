@@ -8,7 +8,7 @@ import { TodoService } from '../todo/shared/todo.service';
   styleUrls: ['./list.component.css']
 })
 
-export class ListComponent implements AppComponent{
+export class ListComponent implements AppComponent {
   title = 'list';
   toDoListArray: any[];
   constructor(private toDoService: TodoService) { }
@@ -29,8 +29,22 @@ export class ListComponent implements AppComponent{
       });
   }
 
+  sortBy(keyVal: any) {
+    let key = keyVal === '1' ? 'isChecked' : keyVal === '2' ? 'priority' : 'title';
+    console.log(key)
+    this.toDoListArray.sort((a, b) => {
+      if (typeof a[key] === 'string') {
+        return a[key].localeCompare(b[key])
+      }
+      return a[key] - b[key];
+    })
+    console.log(this.toDoListArray)
+  }
+
   toggleDoneVisibility() {
   }
+
+
 
   onAdd(itemTitle, itemPriority) {
     this.toDoService.addTitle(itemTitle.value, itemPriority.value);
