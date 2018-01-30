@@ -1,5 +1,5 @@
 <div class="input-group">
-  <input type="text" class="form-control" #itemTitle>
+  <input type="text" class="form-control" style="height: 38px;"#itemTitle>
   <label for="priority" style="padding: 5px;">Priority:</label>
   <select name="priority" id="priority" class="col-md-2 form-control" #itemPriority>
     <option value="0">Major</option>
@@ -30,11 +30,11 @@
 
 <div>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let item of toDoListArray" [class.hide-done]="item.isChecked && !showDone.checked" [class.major-prior]="item.priority === '0' && !item.isChecked">
+    <li class="list-group-item" *ngFor="let item of toDoListArray" [class.text-success]="item.isChecked" [class.hide-done]="item.isChecked && !showDone.checked" [class.major-prior]="item.priority === '0' && !item.isChecked">
       <span class="hover-cursor" [class.text-success]="item.isChecked" (click)="alterCheck(item.$key, item.isChecked)">
         <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-check-circle-o':'fa-circle-thin'"></i>
       </span>
-      {{item.title}}
+      <span>{{item.title}}</span>
       <span class="hover-cursor text-danger pull-right" (click)="onDelete(item.$key)">
         <i class="fa fa-trash-o fa-lg"></i>
       </span>

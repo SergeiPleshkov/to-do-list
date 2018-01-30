@@ -31,14 +31,12 @@ export class ListComponent implements AppComponent {
 
   sortBy(keyVal: any) {
     let key = keyVal === '1' ? 'isChecked' : keyVal === '2' ? 'priority' : 'title';
-    console.log(key)
     this.toDoListArray.sort((a, b) => {
       if (typeof a[key] === 'string') {
         return a[key].localeCompare(b[key])
       }
       return a[key] - b[key];
     })
-    console.log(this.toDoListArray)
   }
 
   toggleDoneVisibility() {
