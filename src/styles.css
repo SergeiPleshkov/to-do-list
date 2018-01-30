@@ -1,3 +1,21 @@
 .hover-cursor {
     cursor: pointer;
 }
+
+.btn-primary {
+    margin-bottom: 0px;
+}
+
+.major-prior {
+    font-weight: bold;
+    color: red;
+}
+
+label {
+    padding: 10px;
+    text-align: right;
+}
+
+.hide-done {
+    display: none;
+}

@@ -10,10 +10,13 @@ export class TodoService {
     return this.toDoList = this.firebasedb.list('titles');
   }
 
-  addTitle(title: string) {
+  addTitle(title: string, priority: string) {
+    let name = priority == '0' ? 'Major' : priority == '1' ? 'Moderate' : 'Minor';
     this.toDoList.push({
       title: title,
-      isChecked: false
+      isChecked: false,
+      priority: priority,
+      priorityName: name
     })
   }
 
@@ -23,5 +26,14 @@ export class TodoService {
 
   removeTitle($key: string) {
     this.toDoList.remove($key);
+  }
+
+  uploadFromFile(obj: any) {
+    this.toDoList.push({
+      title: obj.title,
+      isChecked: obj.isChecked,
+      priority: obj.priority,
+      priorityName: obj.priorityName
+    })
   }
 }

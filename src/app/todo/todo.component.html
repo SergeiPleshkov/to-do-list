@@ -2,16 +2,36 @@
   <h4 class="text-center">To Do List App</h4>
 </div>
 
+
 <div class="input-group">
   <input type="text" class="form-control" #itemTitle>
-  <div class="input-group-addon hover-cursor" (click)="onAdd(itemTitle)">
+  <label for="priority" style="padding: 5px;">Priority:</label>
+  <select name="priority" id="priority" class="col-md-2 form-control" #itemPriority>
+    <option value="0">Major</option>
+    <option value="1">Moderate</option>
+    <option value="2">Minor</option>
+  </select>
+  <div class="input-group-addon hover-cursor" (click)="onAdd(itemTitle, itemPriority)">
     <i class="fa fa-plus-circle fa-2x" style="padding: 5px"></i>
   </div>
 </div>
 
-<div style="margin: 5px 0px">
+<div class="input-group" style="padding: 5px;">
+  <label for="show-done" class="col-md-2"> Show done </label>
+  <input type="checkbox" name="show-done" id="show-done" style="margin-top: 15px;" checked (change)="toggleDoneVisibility()"#showDone>
+  <label for="sort-by" class="col-md-2">Sort by:</label>
+  <select name="sort-by" id="sort-by" class="col-md-2 form-control" style="margin-top: 5px">
+    <option value="1">Done/undone</option>
+    <option value="2">Priority</option>
+    <option value="3">Title</option>
+  </select>
+  <input type="file" name="json-input" id="json-input" class="form-control" style="border: none; margin-top:2px; margin-left: 1px;" (change)="uploadJSON($event)">
+  <button (click)="downloadJSON()" class="col-md-2" style="height: 38px; margin-top: 5px;">Download tasks</button>
+</div>
+
+<div>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let item of toDoListArray">
+    <li class="list-group-item" *ngFor="let item of toDoListArray" [class.hide-done]="item.isChecked && !showDone.checked" [class.major-prior]="item.priority === '0' && !item.isChecked">
       <span class="hover-cursor" [class.text-success]="item.isChecked" (click)="alterCheck(item.$key, item.isChecked)">
         <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-check-circle-o':'fa-circle-thin'"></i>
       </span>
@@ -19,6 +39,7 @@
       <span class="hover-cursor text-danger pull-right" (click)="onDelete(item.$key)">
         <i class="fa fa-trash-o fa-lg"></i>
       </span>
+      <span class="pull-right col-md-2 text-center" style="padding-right: 10px;">{{item.priorityName}}</span>
     </li>
   </ul>
 </div>
