@@ -7,29 +7,33 @@ export class TodoService {
   constructor(private firebasedb: AngularFireDatabase) { }
 
   getToDoList() {
-    return this.toDoList = this.firebasedb.list('titles');
+    return this.firebasedb.list('titles')
   }
 
   addTitle(title: string, priority: string) {
-    let name = priority == '0' ? 'Major' : priority == '1' ? 'Moderate' : 'Minor';
-    this.toDoList.push({
+    const name = {
+      '0': 'Major',
+      '1': 'Moderate',
+      '2': 'Minor'
+    }
+    this.getToDoList().push({
       title: title,
       isChecked: false,
       priority: priority,
-      priorityName: name
+      priorityName: name[priority]
     })
   }
 
   toggleTitle($key: string, flag: boolean) {
-    this.toDoList.update($key, { isChecked: flag });
+    this.getToDoList().update($key, { isChecked: flag });
   }
 
   removeTitle($key: string) {
-    this.toDoList.remove($key);
+    this.getToDoList().remove($key);
   }
 
   uploadFromFile(obj: any) {
-    this.toDoList.push({
+    this.getToDoList().push({
       title: obj.title,
       isChecked: obj.isChecked,
       priority: obj.priority,

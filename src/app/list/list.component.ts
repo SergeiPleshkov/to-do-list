@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { TodoService } from '../todo/shared/todo.service';
+import { Element } from '@angular/compiler';
 
 @Component({
   selector: 'app-list',
@@ -8,7 +9,7 @@ import { TodoService } from '../todo/shared/todo.service';
   styleUrls: ['./list.component.css']
 })
 
-export class ListComponent implements AppComponent {
+export class ListComponent {
   title = 'list';
   toDoListArray: any[];
   constructor(private toDoService: TodoService) { }
@@ -29,27 +30,29 @@ export class ListComponent implements AppComponent {
       });
   }
 
-  sortBy(keyVal: any) {
-    let key = keyVal === '1' ? 'isChecked' : keyVal === '2' ? 'priority' : 'title';
+  sortBy(val: any) {
+    const key = {
+      '1': 'isChecked',
+      '2': 'priority',
+      '3': 'title'
+    }
     this.toDoListArray.sort((a, b) => {
-      if (typeof a[key] === 'string') {
-        return a[key].localeCompare(b[key])
+      if (typeof a[key[val]] === 'string') {
+        return a[key[val]].localeCompare(b[key[val]])
       }
-      return a[key] - b[key];
+      return a[key[val]] - b[key[val]];
     })
   }
 
   toggleDoneVisibility() {
   }
 
-
-
   onAdd(itemTitle, itemPriority) {
     this.toDoService.addTitle(itemTitle.value, itemPriority.value);
     itemTitle.value = null;
   }
 
-  alterCheck($key: string, isChecked) {
+  alterCheck($key: string, isChecked: boolean) {
     this.toDoService.toggleTitle($key, !isChecked);
   }
 
@@ -57,7 +60,7 @@ export class ListComponent implements AppComponent {
     this.toDoService.removeTitle($key);
   }
 
-  downloadJSON(toDoListArray: any) {
+  downloadJSON() {
     let blob = new Blob([JSON.stringify(this.toDoListArray)], {
       type: "text/plain;charset=utf-8"
     });
@@ -79,7 +82,9 @@ export class ListComponent implements AppComponent {
   }
 
   receivedText(e) {
+    console.log(e.target.result)
     let arr = JSON.parse(e.target.result);
+    console.log(arr)
     arr.forEach(elem => {
       this.toDoService.uploadFromFile(elem);
     })
