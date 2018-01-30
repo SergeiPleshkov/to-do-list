@@ -1,0 +1,44 @@
+<div class="input-group">
+  <input type="text" class="form-control" #itemTitle>
+  <label for="priority" style="padding: 5px;">Priority:</label>
+  <select name="priority" id="priority" class="col-md-2 form-control" #itemPriority>
+    <option value="0">Major</option>
+    <option value="1">Moderate</option>
+    <option value="2">Minor</option>
+  </select>
+  <div class="input-group-addon hover-cursor" (click)="onAdd(itemTitle, itemPriority)">
+    <i class="fa fa-plus-circle fa-2x" style="padding: 5px"></i>
+  </div>
+</div>
+
+<div class="input-group" style="padding: 5px;">
+  <div class="col-md-2 offset-1">
+    <label for="show-done"> Show done </label>
+    <input type="checkbox" name="show-done" id="show-done" checked (change)="toggleDoneVisibility()" #showDone>
+  </div>
+  <label for="sort-by" class="col-md-2">Sort by:</label>
+  <select name="sort-by" id="sort-by" class="col-md-2 form-control" style="margin-top: 5px">
+    <option value="1">Done/undone</option>
+    <option value="2">Priority</option>
+    <option value="3">Title</option>
+  </select>
+  <div class="btn btn-primary col-md-2" style="margin: 5px; height: 38px;">Upload tasks
+    <input type="file" name="json-input" id="json-input" style=" opacity: 0; position: absolute; left: 0px; top: 0;width: 100%; height: 100%; cursor: pointer;" (change)="uploadJSON($event)">
+  </div>
+  <button (click)="downloadJSON()" class="col-md-2 btn btn-primary " style="height: 38px; margin-top: 5px;">Download tasks</button>
+</div>
+
+<div>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of toDoListArray" [class.hide-done]="item.isChecked && !showDone.checked" [class.major-prior]="item.priority === '0' && !item.isChecked">
+      <span class="hover-cursor" [class.text-success]="item.isChecked" (click)="alterCheck(item.$key, item.isChecked)">
+        <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-check-circle-o':'fa-circle-thin'"></i>
+      </span>
+      {{item.title}}
+      <span class="hover-cursor text-danger pull-right" (click)="onDelete(item.$key)">
+        <i class="fa fa-trash-o fa-lg"></i>
+      </span>
+      <span class="pull-right col-md-2 text-center" style="padding-right: 10px;">{{item.priorityName}}</span>
+    </li>
+  </ul>
+</div>

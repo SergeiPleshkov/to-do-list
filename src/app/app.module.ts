@@ -7,18 +7,27 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { TodoComponent } from './todo/todo.component';
+import { AboutComponent } from './about/about.component';
+import {Routes, RouterModule} from '@angular/router';
+import { ListComponent } from './list/list.component';
 
+const appRoutes: Routes =[
+  { path: '', component: ListComponent},
+  { path: 'about', component: AboutComponent}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent
+    TodoComponent,
+    AboutComponent, 
+    ListComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
-
+    AngularFireDatabaseModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
