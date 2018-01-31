@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

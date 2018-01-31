@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { TodoService } from '../todo/shared/todo.service';
+import { TodoService } from '../todo.service';
 import { Element } from '@angular/compiler';
 
 @Component({
@@ -12,30 +12,32 @@ import { Element } from '@angular/compiler';
 export class ListComponent {
   title = 'list';
   toDoListArray: any[];
+  sort:string = '1';
   constructor(private toDoService: TodoService) { }
-
+  
   ngOnInit() {
     this.toDoService.getToDoList().snapshotChanges()
-      .subscribe(item => {
-        this.toDoListArray = [];
+    .subscribe(item => {
+      this.toDoListArray = [];
         item.forEach(el => {
           let i = el.payload.toJSON();
           i["$key"] = el.key;
           this.toDoListArray.push(i);
         })
 
-        this.toDoListArray.sort((a, b) => {
-          return a.isChecked - b.isChecked;
-        })
+        this.sortBy(this.sort)
       });
   }
 
-  sortBy(val: any) {
-    const key = {
+  sortBy(val: string) {
+    const key: object = {
       '1': 'isChecked',
       '2': 'priority',
       '3': 'title'
     }
+    this.toDoListArray.sort((a, b)=> {
+      return b.added - a.added;
+    })
     this.toDoListArray.sort((a, b) => {
       if (typeof a[key[val]] === 'string') {
         return a[key[val]].localeCompare(b[key[val]])
@@ -82,9 +84,7 @@ export class ListComponent {
   }
 
   receivedText(e) {
-    console.log(e.target.result)
     let arr = JSON.parse(e.target.result);
-    console.log(arr)
     arr.forEach(elem => {
       this.toDoService.uploadFromFile(elem);
     })

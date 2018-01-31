@@ -17,7 +17,7 @@
     <input type="checkbox" name="show-done" id="show-done" checked (change)="toggleDoneVisibility()" #showDone>
   </div>
   <label for="sort-by" class="col-md-2">Sort by:</label>
-  <select name="sort-by" id="sort-by" class="col-md-2 form-control" style="margin-top: 5px" (change)="sortBy($event.target.value)">
+  <select name="sort-by" id="sort-by" class="col-md-2 form-control" style="margin-top: 5px" (change)="sortBy($event.target.value)" [(ngModel)]="sort">
     <option value="1">Done/undone</option>
     <option value="2">Priority</option>
     <option value="3">Title</option>
@@ -38,7 +38,8 @@
       <span class="hover-cursor text-danger pull-right" (click)="onDelete(item.$key)">
         <i class="fa fa-trash-o fa-lg"></i>
       </span>
-      <span class="pull-right col-md-2 text-center" style="padding-right: 10px;">{{item.priorityName}}</span>
+      <span class="pull-right col-md-2 text-center" style="padding-right: 10px;">{{item.priorityName}} <br> priority</span>
+      <span class="pull-right col-md-2 text-center">Added {{item.dateFrom | date:"dd/MM/yyyy"}}</span>
     </li>
   </ul>
 </div>
