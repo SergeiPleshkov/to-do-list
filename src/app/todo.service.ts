@@ -3,14 +3,15 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 @Injectable()
 export class TodoService {
-  toDoList: AngularFireList<any[]>;
+  toDoList: AngularFireList<any[]>;  
+  
+  
   constructor(private firebasedb: AngularFireDatabase) { }
-
   getToDoList():any {
     return this.firebasedb.list('titles')
   }
 
-  addTitle(title: string, priority: string) {
+  addTitle(title: string, content: string, priority: string, starts: number = +Date.now()  , ends: number = +Date.now()) {
     const name: object = {
       '0': 'Major',
       '1': 'Moderate',
@@ -18,11 +19,13 @@ export class TodoService {
     }
     this.getToDoList().push({
       title: title,
+      content: content,
       isChecked: false,
       priority: priority,
       priorityName: name[priority],
       added: +Date.now(),
-      dateFrom: +Date.now()
+      starts: starts,
+      ends: ends
     })
   }
 
@@ -37,9 +40,13 @@ export class TodoService {
   uploadFromFile(obj: any) {
     this.getToDoList().push({
       title: obj.title,
+      content: obj.content,
       isChecked: obj.isChecked,
       priority: obj.priority,
-      priorityName: obj.priorityName
+      priorityName: obj.priorityName,
+      added: obj.added,
+      starts: obj.starts,
+      ends: obj.ends
     })
   }
 }

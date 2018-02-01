@@ -35,3 +35,7 @@ div,
   margin-top: 5vh;
   margin-bottom: 5vh;
 }
+
+li {
+  font-size: 13px;
+}

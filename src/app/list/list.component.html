@@ -1,12 +1,23 @@
-<div class="input-group">
-  <input type="text" class="form-control" style="height: 38px;"#itemTitle>
-  <label for="priority" style="padding: 5px;">Priority:</label>
-  <select name="priority" id="priority" class="col-md-2 form-control" #itemPriority>
-    <option value="0">Major</option>
-    <option value="1">Moderate</option>
-    <option value="2">Minor</option>
-  </select>
-  <div class="input-group-addon hover-cursor" (click)="onAdd(itemTitle, itemPriority)">
+<div class="input-group" id="add-task-group">
+  <div class="col-md-3" style="margin-right: 0px;">
+
+    <ngbd-datepicker-adapter (onChanged)="startsFrom($event)"></ngbd-datepicker-adapter>
+    <ngbd-datepicker-adapter (onChanged)="endsAt($event)"></ngbd-datepicker-adapter>
+    
+    <div class="form-control">
+      <label for="priority" style="padding: 5px;">Priority:</label>
+      <select name="priority" id="priority" class="form-control" style="width: 100%; margin-right: 0px;" #itemPriority>
+        <option value="0">Major</option>
+        <option value="1">Moderate</option>
+        <option value="2">Minor</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group col-md-8" style="flex-flow: column;  margin-left: 30px">
+  <input type="text" class="form-control" style="height: 38px; margin-bottom: 5px;" #itemTitle>
+  <textarea name="item-content" id="item-content" class="form-control" #itemContent></textarea>
+  </div>
+  <div class="input-group-addon hover-cursor" (click)="onAdd(itemTitle, itemPriority, itemContent)">
     <i class="fa fa-plus-circle fa-2x" style="padding: 5px"></i>
   </div>
 </div>
@@ -17,29 +28,34 @@
     <input type="checkbox" name="show-done" id="show-done" checked (change)="toggleDoneVisibility()" #showDone>
   </div>
   <label for="sort-by" class="col-md-2">Sort by:</label>
-  <select name="sort-by" id="sort-by" class="col-md-2 form-control" style="margin-top: 5px" (change)="sortBy($event.target.value)" [(ngModel)]="sort">
-    <option value="1">Done/undone</option>
-    <option value="2">Priority</option>
-    <option value="3">Title</option>
+  <select name="sort-by" id="sort-by" class="col-md-2 form-control" style="margin-top: 5px" (change)="sortBy($event.target.value)"
+    [(ngModel)]="sort">
+    <option value="0">Checked</option>
+    <option value="1">Priority</option>
+    <option value="2">Title</option>
+    <option value="3">Starts</option>
+    <option value="4">Ends</option>
   </select>
   <div class="btn btn-primary col-md-2" style="margin: 5px; height: 38px;">Upload tasks
-    <input type="file" name="json-input" id="json-input" style=" opacity: 0; position: absolute; left: 0px; top: 0;width: 100%; height: 100%; cursor: pointer;" (change)="uploadJSON($event)">
+    <input type="file" name="json-input" id="json-input" style=" opacity: 0; position: absolute; left: 0px; top: 0;width: 100%; height: 100%; cursor: pointer;"
+      (change)="uploadJSON($event)">
   </div>
-  <button (click)="downloadJSON()" class="col-md-2 btn btn-primary " style="height: 38px; margin-top: 5px;">Download tasks</button>
+  <button (click)="downloadJSON()" class="col-md-2 btn btn-primary " style="height: 38px; margin: 5px;">Download tasks</button>
 </div>
 
 <div>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let item of toDoListArray" [class.text-success]="item.isChecked" [class.hide-done]="item.isChecked && !showDone.checked" [class.major-prior]="item.priority === '0' && !item.isChecked">
+    <li class="list-group-item" *ngFor="let item of toDoListArray" [class.text-success]="item.isChecked" [class.hide-done]="item.isChecked && !showDone.checked"
+      [class.major-prior]="item.priority === '0' && !item.isChecked">
       <span class="hover-cursor" [class.text-success]="item.isChecked" (click)="alterCheck(item.$key, item.isChecked)">
         <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-check-circle-o':'fa-circle-thin'"></i>
       </span>
-      <span>{{item.title}}</span>
+      <span style="word-wrap: break-word">{{item.title}}</span>
       <span class="hover-cursor text-danger pull-right" (click)="onDelete(item.$key)">
         <i class="fa fa-trash-o fa-lg"></i>
       </span>
-      <span class="pull-right col-md-2 text-center" style="padding-right: 10px;">{{item.priorityName}} <br> priority</span>
-      <span class="pull-right col-md-2 text-center">Added {{item.dateFrom | date:"dd/MM/yyyy"}}</span>
+      <span class="pull-right col-md-2 text-center" style="padding-right: 10px;">{{item.priorityName}} priority</span>
+      <span class="pull-right col-md-2 text-center">Starts {{item.starts | date:"dd/MM/yyyy"}} <br> Ends {{item.ends | date:"dd/MM/yyyy"}}</span>
     </li>
   </ul>
 </div>

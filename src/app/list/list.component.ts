@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { TodoService } from '../todo.service';
 import { Element } from '@angular/compiler';
+import { NgbdDatepickerAdapter } from '../datepicker-adapter/datepicker-adapter.component';
+import { Input } from '@angular/core';
+import { NgForm } from '@angular/forms/src/directives/ng_form';
 
 @Component({
   selector: 'app-list',
@@ -12,7 +15,20 @@ import { Element } from '@angular/compiler';
 export class ListComponent {
   title = 'list';
   toDoListArray: any[];
-  sort:string = '1';
+  sort: string = '0';
+
+  starts: number;
+  ends: number; 
+
+  startsFrom(date) {
+    console.log(+date)
+    this.starts = +date;
+  }
+
+  endsAt(date) {
+    this.ends = +date;
+  }
+
   constructor(private toDoService: TodoService) { }
   
   ngOnInit() {
@@ -31,9 +47,11 @@ export class ListComponent {
 
   sortBy(val: string) {
     const key: object = {
-      '1': 'isChecked',
-      '2': 'priority',
-      '3': 'title'
+      '0': 'isChecked',
+      '1': 'priority',
+      '2': 'title',
+      '3': 'starts',
+      '4': 'ends',
     }
     this.toDoListArray.sort((a, b)=> {
       return b.added - a.added;
@@ -49,8 +67,8 @@ export class ListComponent {
   toggleDoneVisibility() {
   }
 
-  onAdd(itemTitle, itemPriority) {
-    this.toDoService.addTitle(itemTitle.value, itemPriority.value);
+  onAdd(itemTitle, itemPriority, itemContent) {
+    this.toDoService.addTitle(itemTitle.value, itemContent.value, itemPriority.value, this.starts, this.ends);
     itemTitle.value = null;
   }
 
