@@ -6,29 +6,16 @@ import { NgbdDatepickerAdapter } from '../datepicker-adapter/datepicker-adapter.
 import { Input } from '@angular/core';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-
 export class ListComponent {
-  title = 'list';
   toDoListArray: any[];
   sort: string = '0';
-
-  starts: number;
-  ends: number; 
-
-  startsFrom(date) {
-    console.log(+date)
-    this.starts = +date;
-  }
-
-  endsAt(date) {
-    this.ends = +date;
-  }
-
+  
   constructor(private toDoService: TodoService) { }
   
   ngOnInit() {
@@ -65,11 +52,6 @@ export class ListComponent {
   }
 
   toggleDoneVisibility() {
-  }
-
-  onAdd(itemTitle, itemPriority, itemContent) {
-    this.toDoService.addTitle(itemTitle.value, itemContent.value, itemPriority.value, this.starts, this.ends);
-    itemTitle.value = null;
   }
 
   alterCheck($key: string, isChecked: boolean) {
