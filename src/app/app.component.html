@@ -1,7 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <app-todo></app-todo>
+        <a routerLink='' class=" btn btn-primary col-md-2 offset-md-4">Main</a>
+        <a routerLink='/about' class=" btn btn-primary col-md-2">About</a>
+        <div class="jumbotron" style="padding: 25px 0px 0px">
+          <h4 class="text-center">To Do List App</h4>
+        </div>
+        <router-outlet></router-outlet>
     </div>
   </div>
 </div>

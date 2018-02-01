@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
-import { TodoService } from '../todo.service';
+import { AppComponent } from '../../app.component';
+import { TodoService } from '../../todo.service';
 import { Element } from '@angular/compiler';
 import { NgbdDatepickerAdapter } from '../datepicker-adapter/datepicker-adapter.component';
 import { Input } from '@angular/core';

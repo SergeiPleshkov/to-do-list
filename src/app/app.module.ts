@@ -10,11 +10,12 @@ import { environment } from '../environments/environment';
 import { TodoComponent } from './todo/todo.component';
 import { AboutComponent } from './about/about.component';
 import { Routes, RouterModule } from '@angular/router';
-import { ListComponent } from './list/list.component';
-import { NgbdDatepickerAdapter } from './datepicker-adapter/datepicker-adapter.component';
+import { ListComponent } from './todo/list/list.component';
+import { NgbdDatepickerAdapter } from './todo/datepicker-adapter/datepicker-adapter.component';
+import { ListItemComponent } from './todo/list/list-item/list-item.component';
 
 const appRoutes: Routes = [
-  { path: '', component: ListComponent },
+  { path: '', component: TodoComponent },
   { path: 'about', component: AboutComponent }
 ];
 
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
     TodoComponent,
     AboutComponent,
     ListComponent,
-    NgbdDatepickerAdapter
+    NgbdDatepickerAdapter,
+    ListItemComponent
   ],
   imports: [
     BrowserModule,

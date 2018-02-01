@@ -1,6 +1,26 @@
-<a routerLink='' class=" btn btn-primary col-md-2 offset-md-4">Main</a>
-<a routerLink='/about' class=" btn btn-primary col-md-2">About</a>
-<div class="jumbotron" style="padding: 25px 0px 0px">
-  <h4 class="text-center">To Do List App</h4>
-</div>
-<router-outlet></router-outlet>
+
+<div class="input-group" id="add-task-group">
+    <div class="col-md-3" style="margin-right: 0px;">
+  
+      <ngbd-datepicker-adapter (onChanged)="startsFrom($event)"></ngbd-datepicker-adapter>
+      <ngbd-datepicker-adapter (onChanged)="endsAt($event)"></ngbd-datepicker-adapter>
+      
+      <div class="form-control">
+        <label for="priority" style="padding: 5px;">Priority:</label>
+        <select name="priority" id="priority" class="form-control" style="width: 100%; margin-right: 0px;" #itemPriority>
+          <option value="0">Major</option>
+          <option value="1">Moderate</option>
+          <option value="2">Minor</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group col-md-8" style="flex-flow: column;  margin-left: 30px">
+    <input type="text" class="form-control" style="height: 38px; margin-bottom: 5px;" #itemTitle>
+    <textarea name="item-content" id="item-content" class="form-control" #itemContent></textarea>
+    </div>
+    <div class="input-group-addon hover-cursor" (click)="onAdd(itemTitle, itemPriority, itemContent)">
+      <i class="fa fa-plus-circle fa-2x" style="padding: 5px"></i>
+    </div>
+  </div>
+
+  <app-list></app-list>
