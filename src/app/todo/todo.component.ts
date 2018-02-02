@@ -28,7 +28,12 @@ export class TodoComponent implements OnInit {
 
 
   onAdd(itemTitle, itemPriority, itemContent) {
+    if (!itemTitle.value) {
+      alert('Task title is required!');
+      return;
+    }
     this.toDoService.addTitle(itemTitle.value, itemContent.value, itemPriority.value, this.starts, this.ends);
-    itemTitle.value = null;
+    itemTitle.value = 'Very important task...';
+    itemContent.value = 'Task description...'
   }
 }
