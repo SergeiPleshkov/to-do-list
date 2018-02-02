@@ -1,7 +1,7 @@
 <form class="form-inline">
-  <div class="form-group">
+  <div class="form-group form-control-plaintext" style="padding-top: 0px;">
     <div class="input-group">
-      <input class="form-control" placeholder="yyyy-mm-dd"
+      <input class="form-control" placeholder="yyyy-mm-dd" style="font-size: 12px; padding-left: 10px;"
              name="d1" #c1="ngModel" [(ngModel)]="model1" ngbDatepicker #d1="ngbDatepicker" (ngModelChange)="sendDate()">
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button">
@@ -10,5 +10,5 @@
       </div>
     </div>
   </div>
-  <button class="btn btn-sm btn-outline-primary" (click)="model1 = today" (click)="sendDate()">Select Today</button>
+  <button class="btn btn-primary" style="margin-bottom: 5px;"(click)="model1 = today" (click)="sendDate()">Select Today</button>
 </form>
