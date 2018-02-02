@@ -1,0 +1,21 @@
+<li>
+    <div class="input-control" style="box-sizing: content-box; border: none; margin-bottom: 10px;">
+  <span class="hover-cursor" [class.text-success]="item.isChecked" (click)="alterCheck(item.$key, item.isChecked)">
+    <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-check-circle-o':'fa-circle-thin'"></i>
+</span>
+<span style="word-wrap: break-word">{{item.title}}</span>
+<span class="hover-cursor text-danger pull-right" (click)="onDelete(item.$key)">
+        <i class="fa fa-trash-o fa-lg"></i>
+  </span>
+  <span class="pull-right col-md-2 text-center" style="padding-right: 10px;">{{item.priorityName}} priority</span>
+  <span class="pull-right col-md-2 text-center">Starts {{item.starts | date:"dd/MM/yyyy"}}
+    <br> Ends {{item.ends | date:"dd/MM/yyyy"}}</span>
+</div>
+  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel title="Show task content">
+      <ng-template ngbPanelContent>
+        {{item.content}}
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</li>

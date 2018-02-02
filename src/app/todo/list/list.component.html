@@ -21,25 +21,7 @@
 
 <div>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let item of toDoListArray" [class.text-success]="item.isChecked" [class.hide-done]="item.isChecked && !showDone.checked"
-      [class.major-prior]="item.priority === '0' && !item.isChecked">
-      <span class="hover-cursor" [class.text-success]="item.isChecked" (click)="alterCheck(item.$key, item.isChecked)">
-        <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-check-circle-o':'fa-circle-thin'"></i>
-      </span>
-      <span style="word-wrap: break-word">{{item.title}}</span>
-      <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-        <ngb-panel title="Show task content">
-          <ng-template ngbPanelContent>
-              {{item.content}}
-          </ng-template>
-        </ngb-panel>
-      </ngb-accordion>
-      <span class="hover-cursor text-danger pull-right" (click)="onDelete(item.$key)">
-        <i class="fa fa-trash-o fa-lg"></i>
-      </span>
-      <span class="pull-right col-md-2 text-center" style="padding-right: 10px;">{{item.priorityName}} priority</span>
-      <span class="pull-right col-md-2 text-center">Starts {{item.starts | date:"dd/MM/yyyy"}}
-        <br> Ends {{item.ends | date:"dd/MM/yyyy"}}</span>
-    </li>
+    <app-list-item class="list-group-item" [class.text-success]="eachItem.isChecked" [class.hide-done]="eachItem.isChecked && !showDone.checked"
+      [class.major-prior]="eachItem.priority === '0' && !eachItem.isChecked" *ngFor="let eachItem of toDoListArray" [item]="eachItem"></app-list-item>
   </ul>
 </div>

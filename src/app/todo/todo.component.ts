@@ -8,26 +8,24 @@ import { TodoService } from '../todo.service';
   providers: [TodoService]
 })
 
-export class TodoComponent implements OnInit {  
-title = 'list';
+export class TodoComponent implements OnInit {
+  title = 'list';
 
-starts: number;
-ends: number; 
+  starts: number;
+  ends: number;
 
-startsFrom(date) {
-  console.log(+date)
-  this.starts = +date;
-}
-
-endsAt(date) {
-  this.ends = +date;
-}
-
-  constructor(private toDoService: TodoService) {}
-  ngOnInit() {
-    
+  startsFrom(date) {
+    this.starts = +date;
   }
-  
+
+  endsAt(date) {
+    this.ends = +date;
+  }
+
+  constructor(private toDoService: TodoService) { }
+  ngOnInit() {
+  }
+
 
   onAdd(itemTitle, itemPriority, itemContent) {
     this.toDoService.addTitle(itemTitle.value, itemContent.value, itemPriority.value, this.starts, this.ends);

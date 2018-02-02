@@ -15,13 +15,14 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 export class ListComponent {
   toDoListArray: any[];
   sort: string = '0';
-  
+  item: any;
+
   constructor(private toDoService: TodoService) { }
-  
+
   ngOnInit() {
     this.toDoService.getToDoList().snapshotChanges()
-    .subscribe(item => {
-      this.toDoListArray = [];
+      .subscribe(item => {
+        this.toDoListArray = [];
         item.forEach(el => {
           let i = el.payload.toJSON();
           i["$key"] = el.key;
@@ -40,7 +41,7 @@ export class ListComponent {
       '3': 'starts',
       '4': 'ends',
     }
-    this.toDoListArray.sort((a, b)=> {
+    this.toDoListArray.sort((a, b) => {
       return b.added - a.added;
     })
     this.toDoListArray.sort((a, b) => {
@@ -52,14 +53,6 @@ export class ListComponent {
   }
 
   toggleDoneVisibility() {
-  }
-
-  alterCheck($key: string, isChecked: boolean) {
-    this.toDoService.toggleTitle($key, !isChecked);
-  }
-
-  onDelete($key: string) {
-    this.toDoService.removeTitle($key);
   }
 
   downloadJSON() {
