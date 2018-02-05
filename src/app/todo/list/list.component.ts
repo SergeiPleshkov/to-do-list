@@ -7,6 +7,14 @@ import { Input } from '@angular/core';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 
 
+const key: object = {
+  '0': 'isChecked',
+  '1': 'priority',
+  '2': 'title',
+  '3': 'starts',
+  '4': 'ends',
+}
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -35,13 +43,6 @@ export class ListComponent {
   }
 
   sortBy(val: string) {
-    const key: object = {
-      '0': 'isChecked',
-      '1': 'priority',
-      '2': 'title',
-      '3': 'starts',
-      '4': 'ends',
-    }
     this.toDoListArray.sort((a, b) => {
       return b.added - a.added;
     })

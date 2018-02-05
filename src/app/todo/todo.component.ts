@@ -8,7 +8,7 @@ import { TodoService } from '../todo.service';
   providers: [TodoService]
 })
 
-export class TodoComponent implements OnInit {
+export class TodoComponent {
   title = 'list';
 
   starts: number;
@@ -23,9 +23,6 @@ export class TodoComponent implements OnInit {
   }
 
   constructor(private toDoService: TodoService) { }
-  ngOnInit() {
-  }
-
 
   onAdd(itemTitle, itemPriority, itemContent) {
     if (!itemTitle.value) {

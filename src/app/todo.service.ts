@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
-@Injectable()
+const name: object = {
+  '0': 'Major',
+  '1': 'Moderate',
+  '2': 'Minor'
+}@Injectable()
 export class TodoService {
-  toDoList: AngularFireList<any[]>;  
-  
-  
+  toDoList: AngularFireList<any[]>;
+
+
   constructor(private firebasedb: AngularFireDatabase) { }
-  getToDoList():any {
+  getToDoList(): any {
     return this.firebasedb.list('titles')
   }
 
-  addTitle(title: string, content: string, priority: string, starts: number = +Date.now()  , ends: number = +Date.now()) {
-    const name: object = {
-      '0': 'Major',
-      '1': 'Moderate',
-      '2': 'Minor'
-    }
+  addTitle(title: string, content: string, priority: string, starts: number = +Date.now(), ends: number = +Date.now()) {
     this.getToDoList().push({
       title: title,
       content: content,
