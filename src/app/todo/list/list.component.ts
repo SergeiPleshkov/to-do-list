@@ -16,6 +16,7 @@ export class ListComponent {
   toDoListArray: any[];
   sort: string = '0';
   item: any;
+  done: any;
 
   constructor(private toDoService: TodoService) { }
 

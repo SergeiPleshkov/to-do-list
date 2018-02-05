@@ -16,6 +16,7 @@ export class ListItemComponent implements OnInit {
   @Input() item: any;
   @Input() toDoListArray: any[];
   @Input() sort: string;
+  @Input() done: any;
 
   ngOnInit() {
     this.toDoService.getToDoList().snapshotChanges()
@@ -58,6 +59,7 @@ export class ListItemComponent implements OnInit {
   }
 
   onDelete($key: string) {
+    if (!confirm(`Remove task "${this.item.title}" ?`)) return;
     this.toDoService.removeTitle($key);
   }
 

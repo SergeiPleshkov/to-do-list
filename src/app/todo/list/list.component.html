@@ -21,7 +21,6 @@
 
 <div>
   <ul class="list-group">
-    <app-list-item class="list-group-item" [class.text-success]="eachItem.isChecked" [class.hide-done]="eachItem.isChecked && !showDone.checked"
-      [class.major-prior]="eachItem.priority === '0' && !eachItem.isChecked" *ngFor="let eachItem of toDoListArray" [item]="eachItem"></app-list-item>
+    <app-list-item *ngFor="let eachItem of toDoListArray" [item]="eachItem" [done]="showDone"></app-list-item>
   </ul>
 </div>
