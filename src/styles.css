@@ -1,0 +1,41 @@
+.hover-cursor {
+  cursor: pointer;
+}
+
+.btn-primary {
+  margin-bottom: 0px;
+}
+
+.major-prior {
+  font-weight: bold;
+  color: rgb(255, 30, 30);
+}
+
+label {
+  padding: 10px;
+  text-align: right;
+}
+
+.hide-done {
+  display: none;
+}
+
+body {
+  background: #2196F3;
+}
+
+div.row,
+.jumbotron {
+  background: #E3F2FD;
+}
+
+.row {
+  padding-bottom: 10vh;
+  padding-top: 5vh;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+li {
+  font-size: 13px;
+}

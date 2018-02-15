@@ -1,0 +1,13 @@
+a {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+textarea {
+  height: 229px;
+}
+
+.fa-plus-circle:hover {
+  color: #0b51c5;
+  transform: scale(1.2)
+}

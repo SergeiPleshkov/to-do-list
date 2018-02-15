@@ -1,0 +1,30 @@
+<ngb-accordion #acc="ngbAccordion" class="btn col-md-10 offset-md-1" style="cursor: initial">
+  <ngb-panel title="Add task">
+    <ng-template ngbPanelContent>
+      <div class="input-group" id="add-task-group">
+        <div class="col-md-3" style="margin-right: 0px; padding: 0px;">
+
+          <ngbd-datepicker-adapter (onChanged)="startsFrom($event)"></ngbd-datepicker-adapter>
+          <ngbd-datepicker-adapter (onChanged)="endsAt($event)"></ngbd-datepicker-adapter>
+
+          <div class="form-control">
+            <label for="priority" style="padding: 5px;">Priority:</label>
+            <select name="priority" id="priority" class="form-control" style="width: 100%; margin-right: 0px;" #itemPriority>
+              <option value="0">Major</option>
+              <option value="1">Moderate</option>
+              <option value="2">Minor</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-md-8" style="margin-bottom: 0px;">
+          <input type="text" class="form-control" style="height: 38px; margin-bottom: 5px;" #itemTitle>
+          <textarea name="item-content" id="item-content" class="form-control" #itemContent placeholder="Task description..."></textarea>
+        </div>
+        <div class="input-group-addon hover-cursor" style="height: 40px; "  (click)="onAdd(itemTitle, itemPriority, itemContent)">
+          <i class="fa fa-plus-circle fa-2x" style="padding: 5px; color: #0f7bfd"></i>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
+<app-list></app-list>
