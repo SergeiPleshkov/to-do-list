@@ -16,3 +16,9 @@ label.btn {
     right: 0px;
     bottom: 0px;
 }
+
+.bg-gray {
+    background: darkgray; 
+    color: black;
+    border: darkgray
+}

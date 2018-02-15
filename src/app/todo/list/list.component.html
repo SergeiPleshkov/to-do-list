@@ -1,6 +1,6 @@
 <div class="input-group row" style="padding: 0px;">
   <div class="col-md-2 btn offset-md-1">
-    <label for="show-done" class="btn btn-primary"> Toggle done </label>
+    <label for="show-done" class="btn btn-primary" [class.bg-gray]="!showDone.checked"> Show done </label>
     <input type="checkbox" name="show-done" id="show-done" checked (change)="toggleDoneVisibility()" #showDone>
   </div>
   <label for="sort-by" class="col-md-2">Sort by:</label>

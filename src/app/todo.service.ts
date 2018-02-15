@@ -5,7 +5,8 @@ const name: object = {
   '0': 'Major',
   '1': 'Moderate',
   '2': 'Minor'
-}@Injectable()
+}
+@Injectable()
 export class TodoService {
   toDoList: AngularFireList<any[]>;
 
