@@ -25,12 +25,18 @@ export class TodoComponent {
   constructor(private toDoService: TodoService) { }
 
   onAdd(itemTitle, itemPriority, itemContent) {
+    if (this.starts > this.ends) {
+      alert('Start date is after end date, dates swaped');
+      let cache = this.starts;
+      this.starts = this.ends;
+      this.ends = cache;
+    }
     if (!itemTitle.value) {
       alert('Task title is required!');
       return;
     }
     this.toDoService.addTitle(itemTitle.value, itemContent.value, itemPriority.value, this.starts, this.ends);
-    itemTitle.value = 'Very important task...';
-    itemContent.value = 'Task description...'
+    itemTitle.value = 'Input task name here...';
+    itemContent.value = '...and task description here!'
   }
 }

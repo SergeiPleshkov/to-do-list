@@ -17,8 +17,8 @@
           </div>
         </div>
         <div class="form-group col-md-8" style="margin-bottom: 0px;">
-          <input type="text" class="form-control" style="height: 38px; margin-bottom: 5px;" #itemTitle>
-          <textarea name="item-content" id="item-content" class="form-control" #itemContent placeholder="Task description..."></textarea>
+          <input type="text" class="form-control" style="height: 38px; margin-bottom: 5px;" value="Input task name here..." required #itemTitle>
+          <textarea name="item-content" id="item-content" class="form-control" #itemContent placeholder="...and task description here!"></textarea>
         </div>
         <div class="input-group-addon hover-cursor" style="height: 40px; "  (click)="onAdd(itemTitle, itemPriority, itemContent)">
           <i class="fa fa-plus-circle fa-2x" style="padding: 5px; color: #0f7bfd"></i>
