@@ -18,9 +18,11 @@
   </div>
   <button (click)="downloadJSON()" class="col-md-2 btn btn-primary " style="height: 38px; margin: 5px;">Download tasks</button>
 </div>
+<label for="filter" class="col-2 offset-1 input-control">Title filter:</label>
+<input type="text" name="filter" id="filter" class="col-7 input-control" #filterString (keyup)="toggleDoneVisibility()">
 
 <div>
   <ul class="list-group">
-    <app-list-item *ngFor="let eachItem of toDoListArray" [item]="eachItem" [done]="showDone"></app-list-item>
+    <app-list-item *ngFor="let eachItem of toDoListArray" [item]="eachItem" [done]="showDone" [filter]="filterString"></app-list-item>
   </ul>
 </div>

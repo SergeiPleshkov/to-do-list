@@ -17,6 +17,7 @@ export class ListItemComponent implements OnInit {
   @Input() toDoListArray: any[];
   @Input() sort: string;
   @Input() done: any;
+  @Input() filter: any;
 
   ngOnInit() {
     this.toDoService.getToDoList().snapshotChanges()

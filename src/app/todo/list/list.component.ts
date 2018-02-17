@@ -21,6 +21,7 @@ const key: object = {
   styleUrls: ['./list.component.css']
 })
 export class ListComponent {
+  filter: any;
   toDoListArray: any[];
   sort: string = '0';
   item: any;
@@ -55,6 +56,7 @@ export class ListComponent {
   }
 
   toggleDoneVisibility() {
+    console.log(this.filter)
   }
 
   downloadJSON() {
