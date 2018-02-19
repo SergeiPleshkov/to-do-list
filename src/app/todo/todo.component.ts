@@ -36,7 +36,7 @@ export class TodoComponent {
       return;
     }
     this.toDoService.addTitle(itemTitle.value, itemContent.value, itemPriority.value, this.starts, this.ends);
-    itemTitle.value = 'Input task name here...';
-    itemContent.value = '...and task description here!'
+    itemTitle.value = '';
+    itemContent.value = '';
   }
 }

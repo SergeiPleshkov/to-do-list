@@ -19,10 +19,16 @@
   <button (click)="downloadJSON()" class="col-md-2 btn btn-primary " style="height: 38px; margin: 5px;">Download tasks</button>
 </div>
 <label for="filter" class="col-2 offset-1 input-control">Title filter:</label>
-<input type="text" name="filter" id="filter" class="col-7 input-control" #filterString (keyup)="toggleDoneVisibility()">
+<input type="text" name="filterTitle" id="filterTitle" style="margin-right: 10%" class="col-7 input-control" [(ngModel)]="filter.title" #filterString (keyup)="toggleDoneVisibility()">
+<label for="filterDateStarts" class="">Starts:</label>
+<input type="date" name="filterDateStarts" id="filterDateStarts" class="col-3 input-control" [(ngModel)]="filter.starts" #filterStarts (change)="toggleDoneVisibility()">
+<label for="filterDateIncludes" class="">Includes:</label>
+<input type="date" name="filterDateIncludes" id="filterDateIncludes" class="col-3 input-control" [(ngModel)]="filter.includes" #filterIncludes (change)="toggleDoneVisibility()">
+<label for="filterDateEnds" class="">Ends:</label>
+<input type="date" name="filterDateEnds" id="filterDateEnds" class="col-3 input-control" [(ngModel)]="filter.ends" #filterEnds (change)="toggleDoneVisibility()">
 
 <div>
   <ul class="list-group">
-    <app-list-item *ngFor="let eachItem of toDoListArray" [item]="eachItem" [done]="showDone" [filter]="filterString"></app-list-item>
+    <app-list-item *ngFor="let eachItem of toDoListArray" [item]="eachItem" [done]="showDone" [filters]="filter"></app-list-item>
   </ul>
 </div>

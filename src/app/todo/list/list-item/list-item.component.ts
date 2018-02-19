@@ -17,7 +17,7 @@ export class ListItemComponent implements OnInit {
   @Input() toDoListArray: any[];
   @Input() sort: string;
   @Input() done: any;
-  @Input() filter: any;
+  @Input() filters: any;
 
   ngOnInit() {
     this.toDoService.getToDoList().snapshotChanges()
@@ -62,6 +62,13 @@ export class ListItemComponent implements OnInit {
   onDelete($key: string) {
     if (!confirm(`Remove task "${this.item.title}" ?`)) return;
     this.toDoService.removeTitle($key);
+  }
+
+  checkFiltered() {
+    return (!this.item.title.toUpperCase().includes(this.filters.title.toUpperCase()) && this.filters.title) || 
+    (!isNaN(+new Date(this.filters.starts)) && (((+new Date(this.filters.starts)) - 3*60*60*1000) !== +this.item.starts)) || 
+    (!isNaN(+new Date(this.filters.ends)) && (((+new Date(this.filters.ends)) - 3*60*60*1000) !== +this.item.ends)) || 
+    (!isNaN(+new Date(this.filters.includes)) && !(+new Date(this.filters.includes) > +this.item.starts && +new Date(this.filters.includes) < +this.item.ends));
   }
 
 }
