@@ -29,6 +29,6 @@ export class NgbdDatepickerAdapter {
   }
 
   get today() {
-    return new Date();
+    return new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
   }
 }

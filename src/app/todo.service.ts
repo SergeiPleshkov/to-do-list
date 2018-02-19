@@ -16,7 +16,7 @@ export class TodoService {
     return this.firebasedb.list('titles')
   }
 
-  addTitle(title: string, content: string, priority: string, starts: number = +Date.now(), ends: number = +Date.now()) {
+  addTitle(title: string, content: string, priority: string, starts: number = +new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()), ends: number = +new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())) {
     this.getToDoList().push({
       title: title,
       content: content,
