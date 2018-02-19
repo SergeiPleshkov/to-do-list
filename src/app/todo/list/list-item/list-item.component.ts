@@ -65,11 +65,11 @@ export class ListItemComponent implements OnInit {
   }
 
   checkFiltered() {
-    console.log(((+new Date(this.filters.ends)) - 3*60*60*1000), new Date(this.item.ends))
     return (!this.item.title.toUpperCase().includes(this.filters.title.toUpperCase()) && this.filters.title) || 
     (!isNaN(+new Date(this.filters.starts)) && (((+new Date(this.filters.starts)) - 3*60*60*1000) !== +this.item.starts)) || 
     (!isNaN(+new Date(this.filters.ends)) && (((+new Date(this.filters.ends)) - 3*60*60*1000) !== +this.item.ends)) || 
-    (!isNaN(+new Date(this.filters.includes)) && !(+new Date(this.filters.includes) >= +this.item.starts || +new Date(this.filters.includes) <= +this.item.ends));
+    (!isNaN(+new Date(this.filters.includes)) && 
+    (!(+new Date(this.filters.includes) - 3*60*60*1000  >= +this.item.starts && +new Date(this.filters.includes) - 3*60*60*1000 <= +this.item.ends)));
   }
 
 }
