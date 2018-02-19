@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 const name: object = {
   '0': 'Major',
@@ -9,11 +13,26 @@ const name: object = {
 @Injectable()
 export class TodoService {
   toDoList: AngularFireList<any[]>;
+  private user: Observable<firebase.User>;
+  private userDetails: firebase.User = null;
+  userId: any;
 
 
-  constructor(private firebasedb: AngularFireDatabase) { }
+  constructor(private firebasedb: AngularFireDatabase, private _firebaseAuth: AngularFireAuth, private router: Router) {
+    this.user = _firebaseAuth.authState;
+    this.user.subscribe(
+      (user) => {
+        if (user) {
+          this.userDetails = user;
+          this.userId = user.uid;
+        } else {
+          this.userDetails = null;
+        }
+      }
+    );
+  }
   getToDoList(): any {
-    return this.firebasedb.list('titles')
+    return this.firebasedb.list(`lists/${this.userId}`)
   }
 
   addTitle(title: string, content: string, priority: string, starts: number = +new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()), ends: number = +new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())) {
@@ -24,7 +43,7 @@ export class TodoService {
       priority: priority,
       priorityName: name[priority],
       added: +Date.now(),
-      starts: starts,
+      starts: starts, 
       ends: ends
     })
   }

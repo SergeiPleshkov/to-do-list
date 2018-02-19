@@ -5,6 +5,7 @@ import { Element } from '@angular/compiler';
 import { NgbdDatepickerAdapter } from '../datepicker-adapter/datepicker-adapter.component';
 import { Input } from '@angular/core';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
+import { AuthService } from '../../auth.service';
 
 
 const key: object = {
@@ -33,18 +34,19 @@ export class ListComponent {
   item: any;
   done: any;
 
-  constructor(private toDoService: TodoService) { }
+
+  constructor(private toDoService: TodoService, private auth: AuthService) { }
 
   ngOnInit() {
     this.toDoService.getToDoList().snapshotChanges()
-      .subscribe(item => {
-        this.toDoListArray = [];
-        item.forEach(el => {
-          let i = el.payload.toJSON();
-          i["$key"] = el.key;
-          this.toDoListArray.push(i);
-        })
-
+    .subscribe(item => {
+      this.toDoListArray = [];
+      item.forEach(el => {
+        let i = el.payload.toJSON();
+        i["$key"] = el.key;
+        this.toDoListArray.push(i);
+      })
+      
         this.sortBy(this.sort)
       });
   }

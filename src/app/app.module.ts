@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,10 +14,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { ListComponent } from './todo/list/list.component';
 import { NgbdDatepickerAdapter } from './todo/datepicker-adapter/datepicker-adapter.component';
 import { ListItemComponent } from './todo/list/list-item/list-item.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service'
 
 const appRoutes: Routes = [
-  { path: '', component: TodoComponent },
-  { path: 'about', component: AboutComponent }
+  { path: 'list', component: TodoComponent },
+  { path: 'about', component: AboutComponent },
+  { path: '', component: LoginComponent}
 ];
 
 @NgModule({
@@ -26,17 +30,19 @@ const appRoutes: Routes = [
     AboutComponent,
     ListComponent,
     NgbdDatepickerAdapter,
-    ListItemComponent
+    ListItemComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

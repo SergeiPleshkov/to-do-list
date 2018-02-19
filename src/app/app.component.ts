@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {AuthService} from './auth.service'
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(private authService: AuthService) {
+
+  }
   title = 'app';
 }
