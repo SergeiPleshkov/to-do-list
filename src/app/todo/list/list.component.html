@@ -18,14 +18,20 @@
   </div>
   <button (click)="downloadJSON()" class="col-md-2 btn btn-primary " style="height: 38px; margin: 5px;">Download tasks</button>
 </div>
-<label for="filter" class="col-2 offset-1 input-control">Title filter:</label>
-<input type="text" name="filterTitle" id="filterTitle" style="margin-right: 10%" class="col-7 input-control" [(ngModel)]="filter.title" #filterString (keyup)="toggleDoneVisibility()">
+<label for="filter" class="col-2 input-control">Title filter:</label>
+<input type="text" name="filterTitle" id="filterTitle" style="margin-right: 10%" class="col-6 input-control" [(ngModel)]="filter.title" #filterString>
+<select name="priority" id="priority" class="input-control col-2" [(ngModel)]="filter.priority" #filterPriority>
+  <option value="0">Major</option>
+  <option value="1">Moderate</option>
+  <option value="2">Minor</option>
+  <option value="">None</option>
+</select>
 <label for="filterDateStarts" class="">Starts:</label>
-<input type="date" name="filterDateStarts" id="filterDateStarts" class="col-3 input-control" [(ngModel)]="filter.starts" #filterStarts (change)="toggleDoneVisibility()">
+<input type="date" name="filterDateStarts" id="filterDateStarts" class="col-3 input-control" [(ngModel)]="filter.starts" #filterStarts>
 <label for="filterDateIncludes" class="">Includes:</label>
-<input type="date" name="filterDateIncludes" id="filterDateIncludes" class="col-3 input-control" [(ngModel)]="filter.includes" #filterIncludes (change)="toggleDoneVisibility()">
+<input type="date" name="filterDateIncludes" id="filterDateIncludes" class="col-3 input-control" [(ngModel)]="filter.includes" #filterIncludes>
 <label for="filterDateEnds" class="">Ends:</label>
-<input type="date" name="filterDateEnds" id="filterDateEnds" class="col-3 input-control" [(ngModel)]="filter.ends" #filterEnds (change)="toggleDoneVisibility()">
+<input type="date" name="filterDateEnds" id="filterDateEnds" class="col-3 input-control" [(ngModel)]="filter.ends" #filterEnds>
 
 <div>
   <ul class="list-group">

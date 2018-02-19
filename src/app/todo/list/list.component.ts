@@ -25,7 +25,8 @@ export class ListComponent {
     title: '',
     starts: '',
     includes: '',
-    ends: ''
+    ends: '',
+    priority: ''
   };
   toDoListArray: any[];
   sort: string = '0';

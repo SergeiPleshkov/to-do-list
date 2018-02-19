@@ -69,7 +69,8 @@ export class ListItemComponent implements OnInit {
     (!isNaN(+new Date(this.filters.starts)) && (((+new Date(this.filters.starts)) - 3*60*60*1000) !== +this.item.starts)) || 
     (!isNaN(+new Date(this.filters.ends)) && (((+new Date(this.filters.ends)) - 3*60*60*1000) !== +this.item.ends)) || 
     (!isNaN(+new Date(this.filters.includes)) && 
-    (!(+new Date(this.filters.includes) - 3*60*60*1000  >= +this.item.starts && +new Date(this.filters.includes) - 3*60*60*1000 <= +this.item.ends)));
+    (!(+new Date(this.filters.includes) - 3*60*60*1000  >= +this.item.starts && +new Date(this.filters.includes) - 3*60*60*1000 <= +this.item.ends)) ||
+    (this.filters.priority && this.filters.priority !== this.item.priority));
   }
 
 }
