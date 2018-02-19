@@ -12,7 +12,7 @@
     <span class="pull-right col-md-2 text-center">Starts {{item.starts | date:"dd/MM/yyyy"}}
       <br> Ends {{item.ends | date:"dd/MM/yyyy"}}</span>
   </div>
-  <ngb-accordion #acc="ngbAccordion">
+  <ngb-accordion #acc="ngbAccordion" *ngIf="item.content">
     <ngb-panel title="Show task content" closed>
       <ng-template ngbPanelContent>
         {{item.content}}
