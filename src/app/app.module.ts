@@ -16,9 +16,10 @@ import { NgbdDatepickerAdapter } from './todo/datepicker-adapter/datepicker-adap
 import { ListItemComponent } from './todo/list/list-item/list-item.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service'
+import { AuthGuard } from './guard.service'
 
 const appRoutes: Routes = [
-  { path: 'list', component: TodoComponent },
+  { path: 'list', component: TodoComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent },
   { path: '', component: LoginComponent}
 ];
@@ -42,7 +43,7 @@ const appRoutes: Routes = [
     FormsModule,
     NgbModule.forRoot()
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

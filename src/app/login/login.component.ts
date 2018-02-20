@@ -13,16 +13,18 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   };
+  auth: any;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(authService: AuthService, private router: Router) {
+    this.auth = authService;
   }
 
     signInWithGoogle() {
-      this.authService.signInWithGoogle()
+      this.auth.signInWithGoogle()
       .then((res) => {
           this.router.navigate(['/list'])
         })
-      .catch((err) => console.log('сайнин эрор',err));
+      .catch((err) => console.log(err));
     }
 
   ngOnInit() {

@@ -3,7 +3,6 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router';
 
 const name: object = {
   '0': 'Major',
@@ -18,7 +17,7 @@ export class TodoService {
   userId: any;
 
 
-  constructor(private firebasedb: AngularFireDatabase, private _firebaseAuth: AngularFireAuth, private router: Router) {
+  constructor(private firebasedb: AngularFireDatabase, private _firebaseAuth: AngularFireAuth) {
     this.user = _firebaseAuth.authState;
     this.user.subscribe(
       (user) => {

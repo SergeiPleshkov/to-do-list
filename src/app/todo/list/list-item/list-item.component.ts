@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.css'],
-  providers: [TodoService]
+  // providers: [TodoService]
 })
 export class ListItemComponent implements OnInit {
   constructor(private toDoService: TodoService) { }
