@@ -39,15 +39,17 @@ export class ListComponent {
   constructor(private toDoService: TodoService, private auth: AuthService) { }
 
   ngOnInit() {
+    console.log(1)
     this.toDoService.getToDoList().snapshotChanges()
     .subscribe(item => {
       this.toDoListArray = [];
+      console.log(2)
       item.forEach(el => {
         let i = el.payload.toJSON();
         i["$key"] = el.key;
         this.toDoListArray.push(i);
       })
-      
+      console.log(3)
         this.sortBy(this.sort)
       });
   }

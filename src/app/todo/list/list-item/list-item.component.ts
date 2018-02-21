@@ -8,8 +8,7 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 @Component({
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
-  styleUrls: ['./list-item.component.css'],
-  // providers: [TodoService]
+  styleUrls: ['./list-item.component.css']
 })
 export class ListItemComponent implements OnInit {
   constructor(private toDoService: TodoService) { }

@@ -7,8 +7,8 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
-  private user: Observable<firebase.User>;
-  private userDetails: firebase.User = null;
+  user: Observable<firebase.User>;
+  userDetails: firebase.User = null;
   userId: any;
 
   constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
@@ -39,6 +39,20 @@ export class AuthService {
     } else {
       return true;
     }
+  }
+
+  fetchUserInfo() {
+    return new Promise(resolve => {
+      this.user.subscribe(user => {
+        if (user) {
+          this.userDetails = user;
+          this.userId = user.uid;
+        } else {
+          this.userDetails = null;
+        }
+        resolve(user);
+      });
+    });
   }
 
 
