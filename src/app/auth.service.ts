@@ -12,19 +12,19 @@ export class AuthService {
   userId: any;
 
   constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
-      this.user = _firebaseAuth.authState;
+    this.user = _firebaseAuth.authState;
 
-      this.user.subscribe(
-        (user) => {
-          if (user) {
-            this.userDetails = user;
-            this.userId = user.uid;
+    this.user.subscribe(
+      (user) => {
+        if (user) {
+          this.userDetails = user;
+          this.userId = user.uid;
 
-          } else {
-            this.userDetails = null;
-          }
+        } else {
+          this.userDetails = null;
         }
-      );
+      }
+    );
   }
 
   signInWithGoogle() {
@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   isLoggedIn() {
-  if (this.userDetails == null ) {
+    if (this.userDetails == null) {
       return false;
     } else {
       return true;
@@ -57,7 +57,9 @@ export class AuthService {
 
 
   logout() {
+    this.userDetails = null;
+    this.userId = null;
     this._firebaseAuth.auth.signOut()
-    .then((res) => this.router.navigate(['']));
+      .then((res) => this.router.navigate(['']));
   }
 }

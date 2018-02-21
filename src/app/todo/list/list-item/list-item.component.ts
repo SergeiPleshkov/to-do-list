@@ -19,17 +19,6 @@ export class ListItemComponent implements OnInit {
   @Input() filters: any;
 
   ngOnInit() {
-    this.toDoService.getToDoList().snapshotChanges()
-      .subscribe(item => {
-        this.toDoListArray = [];
-        item.forEach(el => {
-          let i = el.payload.toJSON();
-          i["$key"] = el.key;
-          this.toDoListArray.push(i);
-        })
-
-        this.sortBy(this.sort)
-      });
   }
 
   sortBy(val: string) {
