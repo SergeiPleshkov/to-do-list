@@ -66,6 +66,10 @@ export class ListComponent {
   toggleDoneVisibility() {
   }
 
+  log(a) {
+    console.log(a)
+  }
+
   downloadJSON() {
     let blob = new Blob([JSON.stringify(this.toDoListArray)], {
       type: "text/plain;charset=utf-8"
