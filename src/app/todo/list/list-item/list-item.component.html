@@ -1,4 +1,4 @@
-<li class="list-group-item" [class.text-success]="item.isChecked" [class.major-prior]="item.priority === '0' && !item.isChecked" [class.hide-done]="(item.isChecked && !done.checked) || checkFiltered()">
+<li class="list-group-item" [class.text-success]="item.isChecked" [class.major-prior]="item.priority === '0' && !item.isChecked" [class.hide-done]="(item.isChecked && !done) || checkFiltered()">
   <div class="input-control" style="box-sizing: content-box; border: none; margin-bottom: 20px;">
     <span class="form-control-lg hover-cursor" [class.text-success]="item.isChecked" (click)="alterCheck(item.$key, item.isChecked)">
       <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-check-circle-o':'fa-circle-thin'"></i>

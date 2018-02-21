@@ -1,7 +1,7 @@
 <div class="input-group row" style="padding: 0px;">
   <div class="col-md-2 btn offset-md-1">
-    <label for="show-done" class="btn btn-primary" [class.bg-gray]="!showDone.checked"> Show done </label>
-    <input type="checkbox" name="show-done" id="show-done" checked (change)="toggleDoneVisibility()" #showDone>
+    <label for="show-done" class="btn btn-primary" [class.bg-gray]="!showChecked"> Show done </label>
+    <input type="checkbox" name="show-done" id="show-done" checked (change)="toggleDoneVisibility()">
   </div>
   <label for="sort-by" class="col-md-2">Sort by:</label>
   <select name="sort-by" id="sort-by" class="col-md-2 form-control" style="margin-top: 5px" (change)="sortBy($event.target.value)"
@@ -19,7 +19,7 @@
   <button (click)="downloadJSON()" class="col-md-2 btn btn-primary " style="height: 38px; margin: 5px;">Download tasks</button>
 </div>
 <label for="filter" class="col-2 input-control">Title filter:</label>
-<input type="text" name="filterTitle" id="filterTitle" class="col-6 input-control" (keyup)="log(filter)" [(ngModel)]="filter.title" #filterString>
+<input type="text" name="filterTitle" id="filterTitle" class="col-6 input-control" [(ngModel)]="filter.title" #filterString>
 <label for="priority">Priority:</label>
 <select name="priority" id="priority" class="input-control col-2" [(ngModel)]="filter.priority" #filterPriority>
   <option value="0">Major</option>
@@ -36,6 +36,6 @@
 
 <div>
   <ul class="list-group">
-    <app-list-item *ngFor="let eachItem of toDoListArray" [item]="eachItem" [done]="showDone" [filters]="filter"></app-list-item>
+    <app-list-item *ngFor="let eachItem of toDoListArray" [item]="eachItem" [done]="showChecked" [filters]="filter"></app-list-item>
   </ul>
 </div>

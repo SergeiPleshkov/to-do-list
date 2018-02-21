@@ -34,19 +34,20 @@ export class ListComponent {
   sort: string = '0';
   item: any;
   done: any;
+  showChecked: boolean = true;
 
 
   constructor(private toDoService: TodoService, private auth: AuthService) { }
 
   ngOnInit() {
     this.toDoService.getToDoList().snapshotChanges()
-    .subscribe(item => {
-      this.toDoListArray = [];
-      item.forEach(el => {
-        let i = el.payload.toJSON();
-        i["$key"] = el.key;
-        this.toDoListArray.push(i);
-      })
+      .subscribe(item => {
+        this.toDoListArray = [];
+        item.forEach(el => {
+          let i = el.payload.toJSON();
+          i["$key"] = el.key;
+          this.toDoListArray.push(i);
+        })
         this.sortBy(this.sort)
       });
   }
@@ -64,10 +65,7 @@ export class ListComponent {
   }
 
   toggleDoneVisibility() {
-  }
-
-  log(a) {
-    console.log(a)
+    this.showChecked = !this.showChecked;
   }
 
   downloadJSON() {
@@ -97,5 +95,5 @@ export class ListComponent {
       this.toDoService.uploadFromFile(elem);
     })
   }
-  
+
 }
