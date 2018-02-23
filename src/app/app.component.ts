@@ -9,10 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private auth: AuthService, private routes: Router) {
+  auth: any;
+  constructor(private aut: AuthService) {
+    this.auth = aut;
   }
   title = 'app';
-  ngOnInit() {
-    this.auth.isLoggedIn() ? this.routes.navigate(['list']) : this.routes.navigate(['login'])
-  }
 }
