@@ -19,9 +19,11 @@ import { AuthService } from './auth.service'
 import { AuthGuard } from './guard.service'
 
 const appRoutes: Routes = [
+  { path: '', redirectTo: 'list', pathMatch: 'full'},
   { path: 'list', component: TodoComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent },
-  { path: '', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: '**', component: TodoComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

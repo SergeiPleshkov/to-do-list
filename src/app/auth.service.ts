@@ -60,6 +60,6 @@ export class AuthService {
     this.userDetails = null;
     this.userId = null;
     this._firebaseAuth.auth.signOut()
-      .then((res) => this.router.navigate(['']));
+      .then((res) => this.router.navigate(['login']));
   }
 }
