@@ -17,6 +17,6 @@ This project is an SPA for storing and managing events and tasks.
 
 ## Links
 
-[Deployed app](https://sergeipleshkov.github.io/to-do-list/login)
-[Video demo](https://youtu.be/oaNC0iPKMI4)
-[Slides](https://docs.google.com/presentation/d/17eV343EYSwJpqQwmcww5dCEJkVF76UqhCVUEl3PxVvs/edit?usp=sharing)
+- [Deployed app](https://sergeipleshkov.github.io/to-do-list/login)
+- [Video demo](https://youtu.be/oaNC0iPKMI4)
+- [Slides](https://docs.google.com/presentation/d/17eV343EYSwJpqQwmcww5dCEJkVF76UqhCVUEl3PxVvs/edit?usp=sharing)
