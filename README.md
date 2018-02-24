@@ -14,6 +14,7 @@ This project is an SPA for storing and managing events and tasks.
 - Angular 5
 - Fontawesome 4.7
 - Bootstrap 4.0
+- Firebase API
 
 ## Links
 
